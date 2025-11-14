@@ -1,0 +1,13 @@
+[package]
+name = "rusted_rover"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+aes-gcm = "0.10.3"
+axum = "0.8.6"
+reqwest = "0.12.24"
+serde = "1.0.228"
+serde_json = "1.0.145"
+tera = "1.20.1"
+tokio = "1.48.0"
