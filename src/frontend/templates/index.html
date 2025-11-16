@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RustedRover OSINT Tool</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RustedRover</h1>
+            <p>OSINT Investigation Toolkit</p>
+        </header>
+
+        <form id="searchForm">
+            <div class="input-group">
+                <input type="text" id="number" placeholder="Phone Number">
+                <input type="text" id="email" placeholder="Email Address">
+            </div>
+            <div class="input-group">
+                <input type="text" id="full_name" placeholder="Full Name">
+                <input type="text" id="ip" placeholder="IP Address">
+            </div>
+            <button type="submit">Start Investigation</button>
+        </form>
+
+        <div id="result" class="result-container"></div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
