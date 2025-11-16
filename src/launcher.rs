@@ -1,16 +1,20 @@
 use crate::api_keeper::ApiKeeper;
-use crate::web_service;
-use axum::{Router, routing};
+use crate::web_service::{handlers, web_routers};
+use axum::{Extension, Router, routing};
 use std::sync::Arc;
 use tera::Tera;
 use tower_http::services::ServeDir;
+
+#[derive(Clone)]
+struct State {}
 
 pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
     let api_config = read_configs()?;
     let tera_templates = load_templates().await?;
 
     let app = Router::new()
-        .route("/", routing::get(web_service::handlers::index))
+        .route("/", routing::get(handlers::index))
+        .route("/search", routing::post(handlers::search))
         .nest_service("/static", ServeDir::new("frontend/static"))
         .with_state(Arc::new(tera_templates))
         .with_state(Arc::new(api_config));
