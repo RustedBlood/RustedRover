@@ -9,7 +9,7 @@ document.getElementById("searchForm").addEventListener("submit", async (e) => {
   };
 
   try {
-    const response = await fetch("/search", {
+    const response = await fetch("/api/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

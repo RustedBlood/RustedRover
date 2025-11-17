@@ -1,6 +1,9 @@
+use phonenumber::PhoneNumber;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+use crate::osint_kernel::osint_utils::ip::IpInfo;
+
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct OsintInfo {
     pub number: Option<String>,
     pub email: Option<String>,
@@ -8,4 +11,12 @@ pub struct OsintInfo {
     pub ip: Option<String>,
 }
 
-impl OsintInfo {}
+#[derive(Debug, Deserialize)]
+pub struct OsintResponse {
+    pub num_info: Option<PhoneNumber>,
+    pub ip_info: Option<IpInfo>,
+}
+
+impl OsintInfo {
+    pub fn validate_info(&self) {}
+}

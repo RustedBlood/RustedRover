@@ -1,4 +1,7 @@
-use crate::osint_kernel::osint_builder::OsintInfo;
+use crate::{
+    launcher::AppState,
+    osint_kernel::{osint_builder::OsintInfo, osint_searcher::searcher},
+};
 use axum::{
     Json,
     extract::State,
@@ -7,13 +10,16 @@ use axum::{
 use std::sync::Arc;
 use tera::{Context, Tera};
 
-pub async fn index(State(tera): State<Arc<Tera>>) -> Response {
+pub async fn index(State(app_state): State<Arc<AppState>>) -> Response {
     let ctx = Context::new();
-    render_template(tera, ctx, "index.html").await
+
+    let templates = app_state.tera_templates.clone();
+    render_template(templates, ctx, "index.html").await
 }
 
-pub async fn search(Json(payload): Json<OsintInfo>) -> Json<OsintInfo> {
-    Json(payload)
+pub async fn search(Json(payload): Json<OsintInfo>) {
+    println!("start");
+    searcher(payload);
 }
 
 async fn render_template(tera: Arc<Tera>, ctx: Context, template_name: &str) -> Response {
